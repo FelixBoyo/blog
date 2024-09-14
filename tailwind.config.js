@@ -6,7 +6,7 @@ module.exports = {
     "./resources/views/shared/dashboard.blade.php",
     "./resources/views/shared/textform.blade.php",
     "resources/views/shared/success-message.blade.php",
-    './resources/css/app.css',
+    "./resources/css/app.css",
    ],
   theme: {
     extend: {},
