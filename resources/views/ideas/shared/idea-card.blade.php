@@ -10,21 +10,18 @@
                 </div>
             </div>
             <div>
-            <form method="POST" action="{{ route('ideas.destroy', $idea->id)}}">
+            <a href="{{ route('ideas.show',$idea->id) }}">View</a>
+            @auth()
+             @can('update', $idea)
+                <a class="mx-2" href="{{ route('ideas.edit',$idea->id) }}">Edit</a>
+
+                <form method="POST" action="{{ route('ideas.destroy', $idea->id)}}">
                     @csrf
                     @method('delete')                   
-                     <a href="{{ route('ideas.show',$idea->id) }}">View</a>
-   
-                @if ($idea->user->id === auth()->id())
-                    <a class="mx-2" href="{{ route('ideas.edit',$idea->id) }}">Edit</a>
-
                     <button class="ms-1 btn btn-danger btn-sm"> X</button>
-               
-                    
-                @endif
-          
-            </form>
-            
+                </form>
+             @endcan
+            @endauth
             </div>
         </div>
     </div>
