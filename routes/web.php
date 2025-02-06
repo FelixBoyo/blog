@@ -21,6 +21,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('lang/{lang}',function($lang){
+    app()->setLocale($lang);
+    session()->put('locale',$lang);
+    return redirect()->route('dashboard');
+
+})->name('lang');
+
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('ideas',IdeaController::class)->except(['index','create','show'])->middleware('auth');
@@ -52,4 +59,6 @@ Route::get('/admin', [AdminDashboardController::class, 'index'])
 Route::get('/terms', function() {
     return view('terms');
 })->name('terms');
+
+
 
